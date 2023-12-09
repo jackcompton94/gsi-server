@@ -5,7 +5,6 @@ from data.game_data_extract import extract_data
 from src.phase import handle_phase
 
 app = Flask(__name__)
-
 logging.basicConfig(filename='app.log', level=logging.INFO)
 
 
@@ -19,7 +18,7 @@ def handle_game_state_update():
         game_data = extract_data(json_data)
 
         # Handle suggestion flow
-        handle_phase(game_data. session)
+        handle_phase(game_data)
 
         return 'OK', 200
     except Exception as e:

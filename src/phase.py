@@ -1,20 +1,42 @@
+from src.bot import ask_gpt
+
+phases = {}
+
+
 def handle_phase(game_data):
-    # If game is in `freezetime` ask AI for suggestion
-    if game_data['round_phase'] == 'freezetime':
-        print("Getting strat from AIGL...")
+    steamid = game_data['steamid']
+    current_phase = game_data['round_phase']
 
-        # print(f"Map: {game_data['map_name']}")
-        # print(f"Current Side: {game_data['current_side']}")
-        # print(f"Past Results: {game_data['round_wins']}")
-        # print(f"Current Money: {game_data['money']}")
-        # print(f"Total Kills: {game_data['kills']}")
-        # print(f"Total Deaths: {game_data['deaths']}")
-
-    elif game_data['round_phase'] == 'over':
-        print(f"""
-        Kills this Round: {game_data['round_kills']}
-        {game_data['round_win']} side won
-        """)
-
-    elif game_data['round_phase'] == 'live':
+    if steamid in phases and phases[steamid] == current_phase:
         pass
+    else:
+        phases[steamid] = current_phase
+
+        if current_phase == 'freezetime':
+            handle_freezetime(game_data)
+        elif current_phase == 'live':
+            handle_live()
+        elif current_phase == 'over':
+            handle_over(game_data)
+
+
+def handle_freezetime(game_data):
+    print("Getting strat from AIGL...")
+
+    current_map = game_data['map_name']
+    current_side = game_data['current_side']
+    results = game_data['round_wins']
+    money = game_data['money']
+    total_kills = game_data['kills']
+    total_deaths = game_data['deaths']
+
+    print(ask_gpt(current_map, current_side, results, money, total_kills, total_deaths))
+
+
+def handle_over(game_data):
+    print(f"""Kills this Round: {game_data['round_kills']}
+     {game_data['round_win']} side won""")
+
+
+def handle_live():
+    pass
