@@ -1,21 +1,14 @@
 import json
-from flask import Flask, request, render_template
+from flask import Flask, request
 from flask_socketio import SocketIO, join_room, leave_room
-
+from flask_cors import CORS
 from src.game_data import extract_game_data
 from src.phase import handle_phase
 
-# Instantiates Flask
+
 app = Flask(__name__)
-
-# Instantiates Socket
-socketio = SocketIO(app)
-
-
-# Socket Testing on local webpage
-@app.route('/')
-def index():
-    return render_template('index.html')
+cors = CORS(app)
+socketio = SocketIO(app, cors_allowed_origins="*")
 
 
 @app.route('/update_gsi', methods=['POST'])
@@ -35,6 +28,7 @@ def handle_game_state_update():
 
         # Handle socketing
         if response:
+            print(response)
             socketio.emit('game_state_update', response, room=steamid)
 
         return 'OK', 200
@@ -45,9 +39,16 @@ def handle_game_state_update():
 
 @socketio.on('connect')
 def handle_connect():
-    steamid = request.args.get('room_name')  # Get SteamID from the query parameters
+    print("User connected")
+    # No need to join a room immediately; wait for the SteamID to be sent
+
+
+@socketio.on('connect_with_steamid')
+def handle_connect_with_steamid(data):
+    steamid = data.get('steamid')
     join_room(steamid)
     print(f"User connected with SteamID: {steamid}")
+    socketio.emit('connected', {'message': 'Successfully connected'}, room=steamid)
 
 
 @socketio.on('disconnect')
