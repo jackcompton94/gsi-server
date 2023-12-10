@@ -1,4 +1,4 @@
-def extract_data(json_data):
+def extract_game_data(json_data):
 
     # Player Data
     player_data = json_data.get('player', {})

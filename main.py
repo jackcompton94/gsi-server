@@ -1,7 +1,7 @@
 import json
 import logging
 from flask import Flask, request
-from data.game_data_extract import extract_data
+from src.game_data import extract_game_data
 from src.phase import handle_phase
 
 app = Flask(__name__)
@@ -14,10 +14,10 @@ def handle_game_state_update():
         data = request.data.decode('UTF-8')
         json_data = json.loads(data)
 
-        # Extract data from JSON
-        game_data = extract_data(json_data)
+        # Extract game data from JSON
+        game_data = extract_game_data(json_data)
 
-        # Handle suggestion flow
+        # Handle round phase flow
         handle_phase(game_data)
 
         return 'OK', 200
