@@ -91,6 +91,6 @@ def extract_game_data(json_data):
         'mode': mode,
         'map_name': map_name,
         'phase': phase,
-        'round': current_round,
+        'current_round': current_round,
         'round_wins': round_wins
     }

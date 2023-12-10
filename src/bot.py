@@ -6,10 +6,11 @@ client = OpenAI(
 )
 
 
-def ask_gpt(current_map, current_side, results, money, total_kills, total_deaths):
+def ask_gpt(current_map, current_side, current_round, results, money, total_kills, total_deaths):
     prompt = f"""
             Current Map: {current_map}
             Current Side: {current_side}
+            Current Round: {current_round}
             Past Results: {results}
             Money: {money}
             Kills: {total_kills}

@@ -1,6 +1,6 @@
 "AIGL Service Integration"
 {
- "uri" "http://127.0.0.1:8888"
+ "uri" "http://127.0.0.1:8888/update_gsi"
  "timeout" "5.0"
  "buffer"  "0.1"
  "throttle" "0.1"
@@ -11,7 +11,7 @@
  }
  "data"
  {
-    "provider"                  "1"
+  "provider"                  "1"
 	"map"                       "1"
 	"round"                     "1"
 	"player_id"                 "1"
