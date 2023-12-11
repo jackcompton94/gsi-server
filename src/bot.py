@@ -1,8 +1,9 @@
+import os
 from openai import OpenAI
-from config import OPENAI_KEY
+# from config import OPENAI_KEY
 
 client = OpenAI(
-    api_key=OPENAI_KEY
+    api_key=os.environ.get('OPENAI_KEY')
 )
 
 
