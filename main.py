@@ -2,7 +2,7 @@ import json
 import logging
 import os
 from flask import Flask, request
-from flask_socketio import SocketIO, join_room, leave_room
+from flask_socketio import SocketIO, join_room
 from flask_cors import CORS
 from src.game_data import extract_game_data
 from src.phase import handle_phase
@@ -43,7 +43,6 @@ def handle_game_state_update():
 @socketio.on('connect')
 def handle_connect():
     print("User connected")
-    # No need to join a room immediately; wait for the SteamID to be sent
 
 
 @socketio.on('connect_with_steamid')
@@ -56,10 +55,7 @@ def handle_connect_with_steamid(data):
 
 @socketio.on('disconnect')
 def handle_disconnect():
-    steamid = request.args.get('room_name')
-    print(f"User disconnected with SteamID: {steamid}")
-    if steamid:
-        leave_room(steamid)
+    print(f"User disconnected")
 
 
 if __name__ == '__main__':
