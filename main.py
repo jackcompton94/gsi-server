@@ -10,7 +10,7 @@ from src.phase import handle_phase
 
 app = Flask(__name__)
 cors = CORS(app)
-socketio = SocketIO(app, cors_allowed_origins="*")
+socketio = SocketIO(app, cors_allowed_origins="http://localhost:1212")
 logging.basicConfig(level=logging.INFO)
 
 
