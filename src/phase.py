@@ -13,10 +13,6 @@ def handle_phase(game_data):
     if steamid in phases and phases[steamid] == current_phase:
         pass
     else:
-
-        if steamid not in phases:
-            phases[steamid] = 'joining'
-
         if current_phase == 'freezetime':
             return handle_freezetime(game_data)
         elif current_phase == 'live':
