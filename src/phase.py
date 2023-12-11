@@ -3,10 +3,7 @@ from src.bot import ask_gpt
 phases = {}
 
 
-def handle_phase(game_data):
-    # Get unique steamid for current user
-    steamid = game_data['steamid']
-
+def handle_phase(game_data, steamid):
     # Get current phase of the round
     current_phase = game_data['round_phase']
 
@@ -39,8 +36,9 @@ def handle_freezetime(game_data):
 
 
 def handle_over(game_data):
-    return f"{game_data['round_win']} side wins | {game_data['steamid']} round kills: {game_data['round_kills']}"
+    print(f"{game_data['player_name']}: round over")
+    return 'over'
 
 
 def handle_live(game_data):
-    print(f"{game_data['steamid']} round start")
+    print(f"{game_data['player_name']}: round start")

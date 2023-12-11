@@ -29,11 +29,6 @@ def ask_gpt(current_map, current_side, current_round, results, money, total_kill
 
             Provide the strategy in very-short summary/bullet-point format.
             Do not give generic advice or too much "fluff", just short and sweet.
-            
-            Buy:
-            Positions:
-            Approach:
-            Prediction:
             """
 
     response = client.chat.completions.create(
