@@ -1,4 +1,6 @@
 import json
+import logging
+import os
 from flask import Flask, request
 from flask_socketio import SocketIO, join_room, leave_room
 from flask_cors import CORS
@@ -9,6 +11,7 @@ from src.phase import handle_phase
 app = Flask(__name__)
 cors = CORS(app)
 socketio = SocketIO(app, cors_allowed_origins="*")
+logging.basicConfig(level=logging.INFO)
 
 
 @app.route('/update_gsi', methods=['POST'])
@@ -60,4 +63,5 @@ def handle_disconnect():
 
 
 if __name__ == '__main__':
-    socketio.run(app, port=8888, allow_unsafe_werkzeug=True)
+    socketio.run(app, port=int(os.environ.get('PORT', 8888)), allow_unsafe_werkzeug=True)
+
