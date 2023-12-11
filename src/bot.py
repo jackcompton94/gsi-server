@@ -27,8 +27,13 @@ def ask_gpt(current_map, current_side, current_round, results, money, total_kill
             - If its the first round, or the first round on a new side we wont have money to buy rifles.
             - There are only 5 players on each team.
 
-            Provide the strategy in short summary/bullet-point format so that I can read it off to my team each round.
-            Do not give generic advice or too much "fluff". We just need short strat details.
+            Provide the strategy in very-short summary/bullet-point format.
+            Do not give generic advice or too much "fluff", just short and sweet.
+            
+            Buy:
+            Positions:
+            Approach:
+            Prediction:
             """
 
     response = client.chat.completions.create(

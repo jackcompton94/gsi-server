@@ -43,4 +43,4 @@ def handle_over(game_data):
 
 
 def handle_live(game_data):
-    return f"{game_data['steamid']} round start"
+    print(f"{game_data['steamid']} round start")
