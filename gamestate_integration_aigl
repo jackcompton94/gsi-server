@@ -1,6 +1,6 @@
 "AIGL Service Integration"
 {
- "uri" "http://127.0.0.1:8888/update_gsi"
+ "uri" "https://gsi-server-256a7749499a.herokuapp.com/update_gsi"
  "timeout" "5.0"
  "buffer"  "0.1"
  "throttle" "0.1"
