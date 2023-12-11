@@ -13,6 +13,8 @@ def handle_phase(game_data):
     if steamid in phases and phases[steamid] == current_phase:
         pass
     else:
+        phases[steamid] = current_phase
+
         if current_phase == 'freezetime':
             return handle_freezetime(game_data)
         elif current_phase == 'live':
@@ -31,8 +33,7 @@ def handle_freezetime(game_data):
     total_kills = game_data['kills']
     total_deaths = game_data['deaths']
 
-    return "getting strat..."\
-        # ask_gpt(current_map, current_side, current_round, results, money, total_kills, total_deaths)
+    return ask_gpt(current_map, current_side, current_round, results, money, total_kills, total_deaths)
 
 
 def handle_over(game_data):
