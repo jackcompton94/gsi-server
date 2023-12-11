@@ -20,7 +20,7 @@ def handle_phase(game_data):
         elif current_phase == 'live':
             return handle_live()
         elif current_phase == 'over':
-            return handle_over()
+            return handle_over(game_data)
 
 
 def handle_freezetime(game_data):
@@ -38,9 +38,9 @@ def handle_freezetime(game_data):
     return ask_gpt(current_map, current_side, current_round, results, money, total_kills, total_deaths)
 
 
-def handle_over():
-    return 'over'
+def handle_over(game_data):
+    return f"{game_data['round_win']} side wins | Round Kills: {game_data}['round_kills']"
 
 
 def handle_live():
-    return 'live'
+    pass
