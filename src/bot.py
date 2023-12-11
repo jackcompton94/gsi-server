@@ -24,11 +24,11 @@ def ask_gpt(current_map, current_side, current_round, results, money, total_kill
             where the game is at to give me in order to give me as much of an advantage as possible.
 
             Key things to remember:
-            - If its the first round or the first round on a new side we wont have money to buy rifles.
+            - If its the first round, or the first round on a new side we wont have money to buy rifles.
             - There are only 5 players on each team.
 
             Provide the strategy in short summary/bullet-point format so that I can read it off to my team each round.
-            Do not give generic advice.
+            Do not give generic advice or too much "fluff". We just need short strat details.
             """
 
     response = client.chat.completions.create(

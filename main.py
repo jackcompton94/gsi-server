@@ -22,6 +22,7 @@ def handle_game_state_update():
 
         # Extract game data from JSON
         game_data = extract_game_data(json_data)
+        print({game_data['steamid']})
 
         # Handle round phase flow
         response = handle_phase(game_data)
@@ -31,7 +32,6 @@ def handle_game_state_update():
 
         # Handle socketing
         if response:
-            print(response)
             socketio.emit('game_state_update', response, room=steamid)
 
         return 'OK', 200
