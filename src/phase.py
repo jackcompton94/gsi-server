@@ -39,7 +39,7 @@ def handle_freezetime(game_data):
 
 
 def handle_over(game_data):
-    return f"{game_data['round_win']} side wins | Round Kills: {game_data}['round_kills']"
+    return f"{game_data['round_win']} side wins | Round Kills: {game_data['round_kills']}"
 
 
 def handle_live():
