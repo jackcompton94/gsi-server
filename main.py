@@ -22,7 +22,6 @@ def handle_game_state_update():
 
         # Extract game data from JSON
         game_data = extract_game_data(json_data)
-        print({game_data['steamid']})
 
         # Handle round phase flow
         response = handle_phase(game_data)

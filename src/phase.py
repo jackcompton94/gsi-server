@@ -18,12 +18,14 @@ def handle_phase(game_data):
         if current_phase == 'freezetime':
             return handle_freezetime(game_data)
         elif current_phase == 'live':
-            return handle_live()
+            return handle_live(game_data)
         elif current_phase == 'over':
             return handle_over(game_data)
 
 
 def handle_freezetime(game_data):
+    print(f"coaching {game_data['steamid']}")
+
     current_map = game_data['map_name']
     current_side = game_data['current_side']
     current_round = game_data['current_round']
@@ -37,8 +39,8 @@ def handle_freezetime(game_data):
 
 
 def handle_over(game_data):
-    return f"{game_data['round_win']} side wins | Round Kills: {game_data['round_kills']}"
+    return f"{game_data['round_win']} side wins | {game_data['steamid']} round kills: {game_data['round_kills']}"
 
 
-def handle_live():
-    pass
+def handle_live(game_data):
+    return f"{game_data['steamid']} round start"
