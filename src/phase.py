@@ -24,8 +24,6 @@ def handle_phase(game_data):
 
 
 def handle_freezetime(game_data):
-    print("Getting strat from AIGL...")
-
     current_map = game_data['map_name']
     current_side = game_data['current_side']
     current_round = game_data['current_round']
