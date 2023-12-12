@@ -1,5 +1,4 @@
 import json
-# import logging
 import os
 from flask import Flask, request
 from flask_socketio import SocketIO, join_room
@@ -11,7 +10,6 @@ from src.phase import handle_phase
 app = Flask(__name__)
 CORS(app, resources={r"/socket.io/*": {"origins": "http://localhost:*"}})  # Specify the allowed origin
 socketio = SocketIO(app, cors_allowed_origins="*")
-# logging.basicConfig(level=logging.INFO)
 
 
 @app.route('/update_gsi', methods=['POST'])

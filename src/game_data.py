@@ -29,27 +29,18 @@ def extract_game_data(json_data):
 
     # Player's Weapon Data
     weapons_data = player_data.get('weapons', {})
-    weapons_info = []
-    for weapon_key, weapon_info in weapons_data.items():
-        weapon_name = weapon_info.get('name')
-        paintkit = weapon_info.get('paintkit', 'default')
-        weapon_type = weapon_info.get('type')
-        ammo_clip = weapon_info.get('ammo_clip')
-        ammo_clip_max = weapon_info.get('ammo_clip_max')
-        ammo_reserve = weapon_info.get('ammo_reserve')
-        state = weapon_info.get('state')
-
-        # Store weapon data in a dictionary
-        weapon_info_dict = {
-            'weapon_name': weapon_name,
-            'paintkit': paintkit,
-            'type': weapon_type,
-            'ammo_clip': ammo_clip,
-            'ammo_clip_max': ammo_clip_max,
-            'ammo_reserve': ammo_reserve,
-            'state': state
+    weapons_info = [
+        {
+            'weapon_name': weapon_info.get('name'),
+            'paintkit': weapon_info.get('paintkit', 'default'),
+            'type': weapon_info.get('type'),
+            'ammo_clip': weapon_info.get('ammo_clip'),
+            'ammo_clip_max': weapon_info.get('ammo_clip_max'),
+            'ammo_reserve': weapon_info.get('ammo_reserve'),
+            'state': weapon_info.get('state')
         }
-        weapons_info.append(weapon_info_dict)
+        for weapon_info in weapons_data.values()
+    ]
 
     # Round Data
     round_data = json_data.get('round', {})

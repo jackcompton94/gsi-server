@@ -4,41 +4,19 @@ phases = {}
 
 
 def handle_phase(game_data, steamid):
-    # Get current phase of the round
     current_phase = game_data['round_phase']
 
     if steamid in phases and phases[steamid] == current_phase:
-        pass
+        return None  # No action needed if the phase hasn't changed
     else:
         phases[steamid] = current_phase
 
         if current_phase == 'freezetime':
-            return handle_freezetime(game_data)
+            # During freezetime, return the result of the ask_gpt function
+            return ask_gpt(game_data['map_name'], game_data['current_side'], game_data['current_round'], game_data['round_wins'], game_data['money'], game_data['kills'], game_data['deaths'])
         elif current_phase == 'live':
-            return handle_live(game_data)
+            # During live phase, return a keyword or code indicating the phase
+            return 'live'
         elif current_phase == 'over':
-            return handle_over(game_data)
-
-
-def handle_freezetime(game_data):
-    print(f"coaching {game_data['steamid']}")
-
-    current_map = game_data['map_name']
-    current_side = game_data['current_side']
-    current_round = game_data['current_round']
-    current_round += 1
-    results = game_data['round_wins']
-    money = game_data['money']
-    total_kills = game_data['kills']
-    total_deaths = game_data['deaths']
-
-    return ask_gpt(current_map, current_side, current_round, results, money, total_kills, total_deaths)
-
-
-def handle_over(game_data):
-    print(f"{game_data['player_name']}: round over")
-    return 'over'
-
-
-def handle_live(game_data):
-    print(f"{game_data['player_name']}: round start")
+            # During over phase, return a keyword or code indicating the phase
+            return 'over'
