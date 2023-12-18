@@ -1,12 +1,13 @@
 import os
 from flask import Flask, request
-from flask_socketio import SocketIO, join_room
+from flask_socketio import join_room
 from flask_cors import CORS
 from src.game_handler import handle_game_state_update
+from config.socket_manager import socketio
 
 app = Flask(__name__)
 CORS(app, resources={r"/socket.io/*": {"origins": "http://localhost:*"}})  # Specify the allowed origin
-socketio = SocketIO(app, cors_allowed_origins="*")
+socketio.init_app(app)
 
 
 @app.route('/update_gsi', methods=['POST'])
