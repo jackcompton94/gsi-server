@@ -1,5 +1,5 @@
 import json
-from flask_socketio import SocketIO
+from main import socketio
 from src.phase import handle_phase
 from src.game_data import extract_game_data
 
