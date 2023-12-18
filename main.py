@@ -1,11 +1,8 @@
-import json
 import os
 from flask import Flask, request
 from flask_socketio import SocketIO, join_room
 from flask_cors import CORS
-from src.game_data import extract_game_data
-from src.phase import handle_phase
-
+from src.game_handler import handle_game_state_update
 
 app = Flask(__name__)
 CORS(app, resources={r"/socket.io/*": {"origins": "http://localhost:*"}})  # Specify the allowed origin
@@ -13,28 +10,8 @@ socketio = SocketIO(app, cors_allowed_origins="*")
 
 
 @app.route('/update_gsi', methods=['POST'])
-def handle_game_state_update():
-    try:
-        data = request.data.decode('UTF-8')
-        json_data = json.loads(data)
-
-        # Extract game data from JSON
-        game_data = extract_game_data(json_data)
-
-        # Get users steamid to join room
-        steamid = game_data['steamid']
-
-        # Handle round phase flow
-        response = handle_phase(game_data, steamid)
-
-        # Handle socketing
-        if response:
-            socketio.emit('game_state_update', response, room=steamid)
-
-        return 'OK', 200
-    except Exception as e:
-        print(f"Error processing game state update: {e}")
-        return 'Error', 500
+def update_gsi():
+    return handle_game_state_update(request)
 
 
 @socketio.on('connect')
