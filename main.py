@@ -18,6 +18,7 @@ def update_gsi():
 
     data = request.get_json()
     steamid = data.get('steamid')
+    print(f'steamid from POST: {steamid}')
 
     if steamid in connected_steamids:
         return handle_game_state_update(request)
