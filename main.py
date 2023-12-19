@@ -14,6 +14,8 @@ print(f'currently connected {connected_steamids}')
 
 @app.route('/update_gsi', methods=['POST'])
 def update_gsi():
+    print(f'currently connected {connected_steamids}')
+
     data = request.get_json()
     steamid = data.get('steamid')
 
