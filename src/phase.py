@@ -14,9 +14,8 @@ def handle_phase(game_data, steamid):
 
         if current_phase == 'freezetime':
             # During freezetime, return the result of the ask_gpt function
-            # return ask_gpt(game_data['map_name'], game_data['current_side'], game_data['current_round'], game_data['round_wins'], game_data['money'], game_data['kills'], game_data['deaths'])
-            return f'freezetime'
+            return ask_gpt(game_data['map_name'], game_data['current_side'], game_data['current_round'], game_data['round_wins'], game_data['money'], game_data['kills'], game_data['deaths'])
         elif current_phase == 'live':
-            return f'live'
+            pass
         elif current_phase == 'over':
             return f'over'
