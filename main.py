@@ -9,6 +9,7 @@ app = Flask(__name__)
 CORS(app, resources={r"/socket.io/*": {"origins": "http://localhost:*"}})
 socketio.init_app(app)
 connected_steamids = set()
+print(f'currently connected {connected_steamids}')
 
 
 @app.route('/update_gsi', methods=['POST'])
