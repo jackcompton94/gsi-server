@@ -11,12 +11,11 @@ app = Flask(__name__)
 CORS(app, resources={r"/socket.io/*": {"origins": "http://localhost:*"}})
 socketio.init_app(app)
 
-connected_steamids = {}
+connected_steamids = set()
 
 
 @app.route('/update_gsi', methods=['POST'])
 def update_gsi():
-
     data = request.get_json()
     player_data = data.get('player', {})
     steamid = player_data.get('steamid')
@@ -24,31 +23,32 @@ def update_gsi():
     if steamid in connected_steamids:
         return handle_game_state_update(request)
     else:
-        response = {'status': 'SteamID not connected', 'message': 'POST received but user not connected to AIGL'}
+        response = {'status': 'SteamID not connected', 'message': 'POST received but user is not connected via AIGL'}
         print(response['message'])
         return jsonify(response)
 
 
 @socketio.on('connect_with_steamid')
 def handle_connect_with_steamid(data):
-
     steamid = data.get('steamid')
 
-    join_room(steamid)
+    if steamid in connected_steamids:
+        print(f'The user {steamid} is already connected')
 
-    connected_steamids[steamid] = {'username': f'{data.get("name")}'}
+    join_room(steamid)
+    connected_steamids.add(steamid)
+
+    print(connected_steamids)
     print(f"User connected with SteamID: {steamid}")
-    socketio.emit('connected', {'message': 'Successfully connected'}, room=steamid)
+    socketio.emit('connect_with_steamid', {'message': 'Successfully connected'}, room=steamid)
 
 
 @socketio.on('disconnect_with_steamid')
 def handle_disconnect_with_steamid(data):
-
-    # Extract the SteamID from the disconnect event
     steamid = data.get('steamid')
-    del connected_steamids[f'{steamid}']
+    connected_steamids.remove(steamid)
+
     print(f"User disconnected with SteamID: {steamid}")
-    print(connected_steamids)
 
 
 if __name__ == '__main__':
