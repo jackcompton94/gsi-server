@@ -1,0 +1,65 @@
+{
+  "provider": {
+    "name": "Counter-Strike: Global Offensive",
+    "appid": 730,
+    "version": 14083,
+    "steamid": "76561198065320026",
+    "timestamp": 1749590000
+  },
+  "map": {
+    "mode": "casual",
+    "name": "de_train",
+    "phase": "live",
+    "round": 1,
+    "team_ct": { "score": 0 },
+    "team_t": { "score": 0 },
+    "num_matches_to_win_series": 0,
+    "round_wins": {}
+  },
+  "round": {
+    "phase": "live"
+  },
+  "player": {
+    "steamid": "76561198065320026",
+    "name": "jamarcus",
+    "observer_slot": 5,
+    "team": "T",
+    "activity": "playing",
+    "state": {
+      "health": 0,
+      "armor": 100,
+      "helmet": true,
+      "flashed": 0,
+      "smoked": 0,
+      "burning": 0,
+      "money": 300,
+      "round_kills": 1,
+      "round_killhs": 0,
+      "equip_value": 2700
+    },
+    "weapons": {
+      "weapon_0": {
+        "name": "weapon_knife",
+        "paintkit": "default",
+        "type": "Knife",
+        "state": "holstered"
+      },
+      "weapon_1": {
+        "name": "weapon_mac10",
+        "paintkit": "default",
+        "type": "SMG",
+        "state": "active",
+        "ammo_clip": 0,
+        "ammo_clip_max": 30,
+        "ammo_reserve": 0
+      }
+    },
+    "match_stats": {
+      "kills": 1,
+      "assists": 0,
+      "deaths": 1,
+      "mvps": 0,
+      "score": 2
+    }
+  }
+}
