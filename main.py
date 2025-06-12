@@ -1,9 +1,8 @@
 import os
-import json
 from flask import Flask, request, jsonify
-from src.display import display_gsi_data
 from utils.parsing import parse_gsi_payload
 from utils.phase_handler import handle_phase_change
+from utils.display import display_gsi_data
 
 app = Flask(__name__)
 STEAMID = "76561198065320026"
@@ -16,7 +15,7 @@ def update_gsi():
         # display_gsi_data(json_data)
 
         payload = parse_gsi_payload(data)
-        handle_phase_change(payload.round.phase, payload.player.steamid)
+        handle_phase_change(payload)
 
         return 'OK', 200
     except Exception as e:

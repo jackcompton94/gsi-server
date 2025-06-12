@@ -4,56 +4,56 @@ from typing import Dict, Optional
 
 @dataclass
 class Provider:
-    name: str
-    appid: int
-    version: int
-    steamid: str
-    timestamp: int
+    name: Optional[str] = None
+    appid: Optional[int] = None
+    version: Optional[int] = None
+    steamid: Optional[str] = None
+    timestamp: Optional[int] = None
 
 
 @dataclass
 class Team:
-    score: int
+    score: Optional[int] = None
 
 
 @dataclass
 class Map:
-    mode: str
-    name: str
-    phase: str
-    round: int
-    team_ct: Team
-    team_t: Team
-    num_matches_to_win_series: int
-    round_wins: Dict[str, str]
+    mode: Optional[str] = None
+    name: Optional[str] = None
+    phase: Optional[str] = None
+    round: Optional[int] = None
+    team_ct: Optional[Team] = None
+    team_t: Optional[Team] = None
+    num_matches_to_win_series: Optional[int] = None
+    round_wins: Optional[Dict[str, str]] = field(default_factory=dict)
 
 
 @dataclass
 class Round:
-    phase: str
+    phase: Optional[str] = None
     win_team: Optional[str] = None
 
 
 @dataclass
 class State:
-    health: int
-    armor: int
-    helmet: bool
-    flashed: int
-    smoked: int
-    burning: int
-    money: int
-    round_kills: int
-    round_killhs: int
-    equip_value: int
+    health: Optional[int] = None
+    armor: Optional[int] = None
+    helmet: Optional[bool] = None
+    flashed: Optional[int] = None
+    smoked: Optional[int] = None
+    burning: Optional[int] = None
+    money: Optional[int] = None
+    round_kills: Optional[int] = None
+    round_killhs: Optional[int] = None
+    equip_value: Optional[int] = None
 
 
 @dataclass
 class Weapon:
-    name: str
-    paintkit: str
-    type: str
-    state: str
+    name: Optional[str] = None
+    paintkit: Optional[str] = None
+    type: Optional[str] = None
+    state: Optional[str] = None
     ammo_clip: Optional[int] = None
     ammo_clip_max: Optional[int] = None
     ammo_reserve: Optional[int] = None
@@ -61,28 +61,28 @@ class Weapon:
 
 @dataclass
 class MatchStats:
-    kills: int
-    assists: int
-    deaths: int
-    mvps: int
-    score: int
+    kills: Optional[int] = None
+    assists: Optional[int] = None
+    deaths: Optional[int] = None
+    mvps: Optional[int] = None
+    score: Optional[int] = None
 
 
 @dataclass
 class Player:
-    steamid: str
-    name: str
-    observer_slot: int
-    team: str
-    activity: str
-    state: State
-    weapons: Dict[str, Weapon]
-    match_stats: MatchStats
+    steamid: Optional[str] = None
+    name: Optional[str] = None
+    observer_slot: Optional[int] = None
+    team: Optional[str] = None
+    activity: Optional[str] = None
+    state: Optional[State] = None
+    weapons: Optional[Dict[str, Weapon]] = field(default_factory=dict)
+    match_stats: Optional[MatchStats] = None
 
 
 @dataclass
 class GSIPayload:
-    provider: Provider
-    map: Map
-    round: Round
-    player: Player
+    provider: Optional[Provider] = None
+    map: Optional[Map] = None
+    round: Optional[Round] = None
+    player: Optional[Player] = None
