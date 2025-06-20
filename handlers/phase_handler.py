@@ -3,24 +3,37 @@ from event_tracker.round_events import RoundEventTracker
 from utils.logging_setup import logger
 from handlers.validation import PayloadValidator
 from handlers.phase_display import PhaseDisplayHandler
+import requests
 
 phases = {}
 event_tracker = RoundEventTracker()
 validator = PayloadValidator(STEAMID, logger)
 phase_display = PhaseDisplayHandler(logger)
-
+COACH_BACKEND_URL = "https://coach-backend-rho.vercel.app/api/get_strategy"
 
 def handle_freezetime_phase(player, steamid, game_map):
 
     round_event_data = event_tracker.collect_round_event_info(steamid)
     freezetime_data = phase_display.collect_freezetime_info(player, game_map)
 
-    print(round_event_data)
-    print(freezetime_data)
+    context = {**freezetime_data, **round_event_data}
+    logger.info("[CTX]", context)
 
-    # # LOGGING ONLY
-    # event_tracker.summarize_round(steamid)
-    # phase_display.display_freezetime_info(player, steamid, game_map)
+    try:
+        response = requests.post(
+            COACH_BACKEND_URL,
+            json={"context": context},
+            timeout=10
+        )
+
+        if response.ok:
+            strategy = response.json().get("strategy")
+            logger.info("[STRATEGY]", strategy)
+        else:
+            logger.error("[ERROR]", response.status_code, response.text)
+
+    except requests.RequestException as e:
+        logger.error(f"[EXCEPTION] Failed to get strategy: {e}")
 
 
 def handle_phase_change(payload):

@@ -42,8 +42,8 @@
       "smoked": 0,
       "burning": 0,
       "money": 9900,
-      "round_kills": 0,
-      "round_killhs": 0,
+      "round_kills": 1,
+      "round_killhs": 1,
       "equip_value": 1600
     },
     "weapons": {

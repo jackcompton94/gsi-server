@@ -1,3 +1,4 @@
+import logging
 import os
 import json
 from flask import Flask, request, jsonify
@@ -11,15 +12,14 @@ app = Flask(__name__)
 def update_gsi():
     try:
         data = request.data.decode('UTF-8')
-        # json_data = json.loads(data)
-        # display_gsi_data(json_data)
+        # display_gsi_data(json.loads(data))
 
         payload = parse_gsi_payload(data)
         handle_phase_change(payload)
 
         return 'OK', 200
     except Exception as e:
-        print(f"Error processing GSI update: {e}")
+        logging.error(f"Error processing GSI update: {e}")
         return 'Error', 500
 
 

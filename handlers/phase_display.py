@@ -1,5 +1,5 @@
-from typing import Any, Optional
-from utils.weapon_utils import categorize_weapons
+from typing import Any
+from utils.weapon_utils import get_weapon_names
 
 
 class PhaseDisplayHandler:
@@ -48,7 +48,7 @@ class PhaseDisplayHandler:
         self.logger.info(f"  Money: ${money if money is not None else 'N/A'}")
         self.logger.info(f"  Armor: {armor if armor is not None else 'N/A'}")
         self.logger.info(f"  Helmet: {'Yes' if has_helmet else 'No' if has_helmet is not None else 'N/A'}")
-    
+
     def _display_loadout(self, player: Any):
         """Display player weapon loadout."""
         weapons = getattr(player, "weapons", {})
@@ -56,16 +56,15 @@ class PhaseDisplayHandler:
             self.logger.warning("No weapon data available.")
             return
 
-        weapon_categories = categorize_weapons(weapons)
+        weapon_names = get_weapon_names(weapons)
 
         self.logger.info("[LOADOUT]")
-        for category, weapon_list in weapon_categories.items():
-            if weapon_list:
-                category_display = category.title()
-                if category == "others":
-                    category_display = "Other"
-                self.logger.info(f"  {category_display}: {', '.join(weapon_list)}")
-    
+        if weapon_names:
+            self.logger.info(f"  Weapons: {', '.join(weapon_names)}")
+        else:
+            self.logger.info("  No weapons found.")
+
+
     def _display_map_info(self, game_map: Any):
         """Display map and round information."""
         if not game_map:
@@ -95,7 +94,7 @@ class PhaseDisplayHandler:
         match_stats = getattr(player, "match_stats", {})
         state = getattr(player, "state", {})
         weapons = getattr(player, "weapons", {})
-        weapon_categories = categorize_weapons(weapons)
+        weapon_names = get_weapon_names(weapons)
 
         map_name = getattr(game_map, "name", "unknown")
         map_mode = getattr(game_map, "mode", "unknown")
@@ -119,7 +118,7 @@ class PhaseDisplayHandler:
                 "armor": getattr(state, "armor", 0),
                 "helmet": getattr(state, "helmet", False)
             },
-            "loadout": weapon_categories,
+            "loadout": weapon_names,
             "map_info": {
                 "map": map_name,
                 "mode": map_mode,
@@ -129,3 +128,4 @@ class PhaseDisplayHandler:
                 "round_history": round_wins
             }
         }
+

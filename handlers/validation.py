@@ -25,7 +25,9 @@ class PayloadValidator:
             self.logger.info("[INFO] Warm up")
             return None
 
-        # TODO: ADD 'gameover' CHECK
+        if payload.map.phase == 'gameover':
+            self.logger.info("[INFO] Game over")
+            return None
 
         if player.steamid != self.target_steamid:
             self.logger.info(f"[INFO] Ignored payload for SteamID {player.steamid} (expected {self.target_steamid}).")

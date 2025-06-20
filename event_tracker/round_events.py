@@ -80,29 +80,6 @@ class RoundEventTracker:
         if new_headshots > 0:
             logger.info(f"[LIVE EVENT] {new_headshots} headshot kill(s) added with {weapon_name} ({weapon_type}).")
 
-    def summarize_round(self, steamid: str):
-        """Log a summary of the round for a given player."""
-        events = self.get_player_events(steamid)
-        if not events:
-            logger.warning("[ROUND SUMMARY] No round events found.")
-
-        logger.info("[ROUND SUMMARY]")
-        logger.info(f"  Kills: {events.get('kills', 0)} ({events.get('hkills', 0)} headshots)")
-        logger.info(f"  Player died: {events.get('player_died', False)}")
-
-        kill_weapons = events.get("kill_weapons", {})
-        headshot_weapons = events.get("headshot_weapons", {})
-
-        if kill_weapons:
-            logger.info("  Kill Weapons:")
-            for weapon, count in kill_weapons.items():
-                logger.info(f"    {weapon}: {count}")
-
-        if headshot_weapons:
-            logger.info("  Headshot Weapons:")
-            for weapon, count in headshot_weapons.items():
-                logger.info(f"    {weapon}: {count}")
-
     def collect_round_event_info(self, steamid: str):
         events = self.get_player_events(steamid)
         return {
