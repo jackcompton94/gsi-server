@@ -1,12 +1,11 @@
 import os
 import json
 from flask import Flask, request, jsonify
-from utils.parsing import parse_gsi_payload
+from utils.parser import parse_gsi_payload
 from handlers.phase_handler import handle_phase_change
-from utils.display import display_gsi_data
+from utils.raw_display import display_gsi_data
 
 app = Flask(__name__)
-STEAMID = "76561198065320026"
 
 @app.route('/update_gsi', methods=['POST'])
 def update_gsi():
