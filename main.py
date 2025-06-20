@@ -2,7 +2,7 @@ import os
 import json
 from flask import Flask, request, jsonify
 from utils.parsing import parse_gsi_payload
-from utils.phase_handler import handle_phase_change
+from handlers.phase_handler import handle_phase_change
 from utils.display import display_gsi_data
 
 app = Flask(__name__)
