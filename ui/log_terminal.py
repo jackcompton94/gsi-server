@@ -35,7 +35,10 @@ class LogTerminal(tk.Tk):
             widget.destroy()
 
         # ASCII art label (using a monospace font)
-        self.ascii_label = tk.Label(self, text=ASCII_ART, fg="#00FF00", bg="black",
+        self.ascii_label = tk.Label(self, text=ASCII_ART,
+                                    # fg="#00FF00",
+                                    fg="#66CCFF",
+                                    bg="black",
                                     font=("Courier New", 18, "bold"))
         self.ascii_label.pack(pady=(30, 10))
 
@@ -52,24 +55,27 @@ class LogTerminal(tk.Tk):
 
         # Submit button
         style = ttk.Style()
-        style.theme_use('clam')  # Use a theme that lets us customize everything
+        style.theme_use('clam')  # Good choice for full customization
 
-        # Custom hacker-style button
-        style.configure("Neon.TButton",
-                        foreground="black",
-                        background="#00FF00",
-                        font=("Courier New", 14, "bold"),
+        style.configure("SleekGray.TButton",
+                        foreground="#222222",      # dark gray text
+                        background="#BBBBBB",      # medium-dark gray button bg
+                        font=("Segoe UI", 14, "bold"),
                         padding=6,
-                        borderwidth=0)
-        style.map("Neon.TButton",
-                  background=[('active', '#00CC00')],
-                  foreground=[('active', 'black')])
+                        borderwidth=1,
+                        relief="flat")            # flat but with a subtle border
+
+        style.map("SleekGray.TButton",
+                  background=[('pressed', '#666666'),   # darker gray when pressed
+                              ('active', '#888888')],   # darker gray on hover
+                  foreground=[('pressed', '#000000'),
+                              ('active', '#111111')])
 
         self.submit_btn = ttk.Button(self, text="▶ Start",
-                                     style="Neon.TButton",
+                                     style="SleekGray.TButton",
                                      command=self.on_submit)
         self.submit_btn.pack()
-        self.submit_btn.pack()
+
 
         # Bind Enter key to submit
         self.bind('<Return>', lambda event: self.on_submit())
