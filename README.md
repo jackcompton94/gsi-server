@@ -1,11 +1,17 @@
-# CS-AIGL (Counter-Strike AI Game Leader)
+# GSI Server - Local Backend for CS AIGL
 
-This repo holds the GSI Server code for the CS2 strategy provider CS-AIGL. 
+This is the local backend Game State Integration (GSI) server that receives real-time game data from Counter-Strike 2 via HTTP POST requests. The server processes and transforms the raw game state data before forwarding it to the separate CS AIGL AI Coach Service for tactical analysis and strategy recommendations.
 
-## Context
-A CS2 strategy provider that utilizes LLMs and ML to recommend the most optimal approach each round by analyzing trends 
-in the outcomes of previous strategies, map choice, current side, both team’s economies, and active win-loss ratio in 
-real-time.
+## Architecture
+- **Local GSI Server** (this repository): Receives POST requests from CS2, processes game state data
+- **CS AIGL AI Coach Service** (separate service): Provides AI-powered tactical recommendations using OpenAI's GPT model
+
+## Features
+- Receives real-time game state data from Counter-Strike 2 via GSI
+- Processes and validates incoming game data
+- Transforms raw game state into structured format for AI analysis
+- Forwards processed data to the CS AIGL AI Coach Service
+- Handles game events: round start/end, player states, team economies, map data
 
 ## Documentation
 [Counter-Strike: Global Offensive Game State Integration - Valve Developer Community](https://developer.valvesoftware.com/wiki/Counter-Strike:_Global_Offensive_Game_State_Integration)
