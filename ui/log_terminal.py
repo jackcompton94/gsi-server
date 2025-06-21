@@ -1,6 +1,7 @@
 import tkinter as tk
 import queue
 import datetime
+from tkinter import ttk
 
 log_queue = queue.Queue()
 
@@ -21,7 +22,7 @@ class LogTerminal(tk.Tk):
     def __init__(self):
         super().__init__()
         self.title("CS2 AI Coach")
-        self.geometry("700x500")
+        self.geometry("1080x800")
         self.configure(bg="black")
 
         self.steamid = None
@@ -50,9 +51,24 @@ class LogTerminal(tk.Tk):
         self.steamid_entry.focus_set()
 
         # Submit button
-        self.submit_btn = tk.Button(self, text="Start", command=self.on_submit,
-                                    font=("Courier New", 14), bg="#00FF00", fg="black",
-                                    activebackground="#00CC00", activeforeground="black")
+        style = ttk.Style()
+        style.theme_use('clam')  # Use a theme that lets us customize everything
+
+        # Custom hacker-style button
+        style.configure("Neon.TButton",
+                        foreground="black",
+                        background="#00FF00",
+                        font=("Courier New", 14, "bold"),
+                        padding=6,
+                        borderwidth=0)
+        style.map("Neon.TButton",
+                  background=[('active', '#00CC00')],
+                  foreground=[('active', 'black')])
+
+        self.submit_btn = ttk.Button(self, text="▶ Start",
+                                     style="Neon.TButton",
+                                     command=self.on_submit)
+        self.submit_btn.pack()
         self.submit_btn.pack()
 
         # Bind Enter key to submit
@@ -94,7 +110,7 @@ class LogTerminal(tk.Tk):
         # Setup tags for coloring
         self.text_widget.tag_config("INFO", foreground="#00FF00")       # Bright Green
         self.text_widget.tag_config("ACTION", foreground="#FF6F61")     # Soft Red-Orange
-        self.text_widget.tag_config("STRATEGY", foreground="#66CCFF", font=("Courier New", 12, "bold"))  # Light Blue
+        self.text_widget.tag_config("STRATEGY", foreground="#66CCFF")   # Light Blue
 
         self.after(100, self.poll_log_queue)
 
