@@ -1,0 +1,80 @@
+{
+  "provider": {
+    "name": "Counter-Strike: Global Offensive",
+    "appid": 730,
+    "version": 14084,
+    "steamid": "76561198065320026",
+    "timestamp": 1749680259
+  },
+  "map": {
+    "mode": "casual",
+    "name": "de_dust2",
+    "phase": "live",
+    "round": 6,
+    "team_ct": {
+      "score": 3
+    },
+    "team_t": {
+      "score": 3
+    },
+    "num_matches_to_win_series": 0,
+    "round_wins": {
+      "1": "ct_win_defuse",
+      "2": "t_win_elimination",
+      "3": "t_win_elimination",
+      "4": "ct_win_defuse",
+      "5": "ct_win_elimination",
+      "6": "t_win_bomb"
+    }
+  },
+  "round": {
+    "phase": "freezetime",
+    "win_team": null
+  },
+  "player": {
+    "steamid": "76561198065320026",
+    "name": "jamarcus",
+    "observer_slot": 0,
+    "team": "CT",
+    "activity": "playing",
+    "state": {
+      "health": 100,
+      "armor": 100,
+      "helmet": true,
+      "flashed": 0,
+      "smoked": 0,
+      "burning": 0,
+      "money": 10000,
+      "round_kills": 0,
+      "round_killhs": 0,
+      "equip_value": 1600
+    },
+    "weapons": {
+      "weapon_0": {
+        "name": "weapon_knife_survival_bowie",
+        "paintkit": "aq_damascus_90",
+        "type": "Knife",
+        "state": "holstered",
+        "ammo_clip": null,
+        "ammo_clip_max": null,
+        "ammo_reserve": null
+      },
+      "weapon_1": {
+        "name": "weapon_usp_silencer",
+        "paintkit": "cu_usp_krokos",
+        "type": "Pistol",
+        "state": "active",
+        "ammo_clip": 12,
+        "ammo_clip_max": 12,
+        "ammo_reserve": 24
+      }
+    },
+    "match_stats": {
+      "kills": 11,
+      "assists": 1,
+      "deaths": 3,
+      "mvps": 3,
+      "score": 32
+    }
+  }
+}
