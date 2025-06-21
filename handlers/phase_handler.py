@@ -1,9 +1,10 @@
+import requests
 from config import STEAMID
 from event_tracker.round_events import RoundEventTracker
 from utils.logging_setup import logger
 from handlers.validation import PayloadValidator
 from handlers.phase_display import PhaseDisplayHandler
-import requests
+from ui.log_terminal import push_log
 
 phases = {}
 event_tracker = RoundEventTracker()
@@ -29,6 +30,7 @@ def handle_freezetime_phase(player, steamid, game_map):
         if response.ok:
             strategy = response.json().get("strategy")
             logger.info("[STRATEGY]", strategy)
+            push_log(f"[STRATEGY] {strategy}")
         else:
             logger.error("[ERROR]", response.status_code, response.text)
 
@@ -65,10 +67,12 @@ def handle_phase_transition(player, steamid, game_map, current_phase, previous_p
 
     elif current_phase == 'live':
         logger.info("[ACTION] Entered 'live' — new round started.")
+        push_log("[ACTION] Entered 'live' — new round started.")
         event_tracker.reset_player_events(steamid)
 
     elif current_phase == 'over':
         logger.info("[ACTION] Entered 'over' — round officially ended.")
+        push_log("[STRATEGY] Entered 'over' — round officially ended.")
 
     else:
         logger.warning(f"Unrecognized round phase: '{current_phase}'")
