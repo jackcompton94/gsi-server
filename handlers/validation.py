@@ -1,10 +1,15 @@
 from typing import Optional, Any
-from ui.log_terminal import push_log
+from utils.logger_hooks import push_log
+
 
 class PayloadValidator:
     def __init__(self, target_steamid: str, logger):
         self.target_steamid = target_steamid
         self.logger = logger
+
+    def update_steamid(self, steamid):
+        self.logger.info(f"[Validator] SteamID updated to: {steamid}")
+        self.target_steamid = steamid
     
     def validate_payload(self, payload: Any) -> Optional[Any]:
         """Validate payload and return player object if valid, None otherwise."""

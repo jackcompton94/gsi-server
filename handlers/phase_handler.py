@@ -1,15 +1,13 @@
 import requests
 import re
-from config import STEAMID
+from core.globals import validator
 from event_tracker.round_events import RoundEventTracker
 from utils.logging_setup import logger
-from handlers.validation import PayloadValidator
 from handlers.phase_display import PhaseDisplayHandler
 from ui.log_terminal import push_log
 
 phases = {}
 event_tracker = RoundEventTracker()
-validator = PayloadValidator(STEAMID, logger)
 phase_display = PhaseDisplayHandler(logger)
 COACH_BACKEND_URL = "https://coach-backend-rho.vercel.app/api/get_strategy"
 # LOCAL_COACH_BACKEND_URL = "http://127.0.0.1:5000/api/get_strategy"
@@ -32,7 +30,7 @@ def handle_freezetime_phase(player, steamid, game_map):
         response = requests.post(
             COACH_BACKEND_URL,
             json={"context": context},
-            timeout=10
+            timeout=30
         )
 
         if response.ok:
@@ -72,6 +70,7 @@ def handle_phase_transition(player, steamid, game_map, current_phase):
     phases[steamid] = current_phase
 
     if current_phase == 'freezetime':
+        push_log("[INFO] Getting strat call..")
         handle_freezetime_phase(player, steamid, game_map)
 
     elif current_phase == 'live':
