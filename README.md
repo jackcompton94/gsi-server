@@ -7,11 +7,80 @@ This is the local backend Game State Integration (GSI) server that receives real
 - **CS AIGL AI Coach Service** (separate service): Provides AI-powered tactical recommendations using OpenAI's GPT model
 
 ## Features
-- Receives real-time game state data from Counter-Strike 2 via GSI
-- Processes and validates incoming game data
-- Transforms raw game state into structured format for AI analysis
-- Forwards processed data to the CS AIGL AI Coach Service
-- Handles game events: round start/end, player states, team economies, map data
+- **Real-time Game State Processing**: Receives and processes CS2 GSI data via HTTP POST
+- **Interactive Terminal UI**: Modern tkinter-based dashboard with live logging and SteamID management
+- **SteamID-based Player Tracking**: Validates and filters game data for specific Steam accounts
+- **Round Event Tracking**: Comprehensive tracking of kills, deaths, headshots, and weapon usage
+- **Death Analysis**: Captures active weapon and full loadout at time of death
+- **Live Game Events**: Real-time logging of player actions, kills, and round events
+- **Test Suite**: Automated testing with live snapshot replay functionality
+- **Data Validation**: Robust payload validation with menu/warmup/gameover state handling
+
+## New Components
+
+### Terminal UI (`ui/log_terminal.py`)
+- Splash screen with SteamID input
+- Live dashboard with color-coded event logging
+- Real-time typing animation for incoming events
+- Modern dark theme with blue accent highlights
+
+### Event Tracking (`event_tracker/round_events.py`)
+- Per-player round statistics tracking
+- Kill/headshot counters with weapon attribution
+- Death state capture with weapon/loadout analysis
+- Event persistence across game states
+
+### Enhanced Validation (`handlers/validation.py`)
+- SteamID-based filtering of game data
+- Game state validation (menu, warmup, gameover handling)
+- Improved error handling and logging
+
+### Testing Framework (`tests/test.py`)
+- Live snapshot testing with JSON replay
+- UI testing with automated log feeding
+- Network endpoint validation
+
+## Installation & Setup
+
+1. **Install Dependencies**:
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+2. **Configure CS2 GSI**:
+   - Place the `gamestate_integration_aigl` config file in your CS2 cfg directory
+   - Ensure the server URL matches your local setup (default: `http://localhost:8888`)
+
+3. **Run the Server**:
+   ```bash
+   python main.py
+   ```
+
+4. **Enter SteamID**:
+   - On first launch, enter your SteamID in the splash screen
+   - The server will filter GSI data for your specific Steam account
+
+## Usage
+
+- **Terminal UI**: The application launches with a modern terminal interface
+- **Live Events**: Real-time game events appear in the dashboard with color coding:
+  - 🔴 **[ACTION]** - Critical game actions (red)
+  - 🔵 **[STRATEGY]** - Strategic recommendations (blue) 
+  - 🟢 **[INFO]** - General information (green)
+- **Event Tracking**: Automatic tracking of kills, deaths, and weapon usage per round
+- **Testing**: Use `tests/test.py` to replay game snapshots or test the UI
+
+## Testing
+
+Run the test suite to validate functionality:
+
+```bash
+# Test with live snapshots
+python tests/test.py
+
+# Test UI only
+python -c "from tests.test import test_ui; test_ui()"
+```
 
 ## Documentation
 [Counter-Strike: Global Offensive Game State Integration - Valve Developer Community](https://developer.valvesoftware.com/wiki/Counter-Strike:_Global_Offensive_Game_State_Integration)
