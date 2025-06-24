@@ -12,6 +12,7 @@ event_tracker = RoundEventTracker()
 validator = PayloadValidator(STEAMID, logger)
 phase_display = PhaseDisplayHandler(logger)
 COACH_BACKEND_URL = "https://coach-backend-rho.vercel.app/api/get_strategy"
+# LOCAL_COACH_BACKEND_URL = "http://127.0.0.1:5000/api/get_strategy"
 
 def strip_markdown(text):
     # Remove bold/italic formatting (**text**, *text*)
@@ -75,12 +76,10 @@ def handle_phase_transition(player, steamid, game_map, current_phase):
 
     elif current_phase == 'live':
         logger.info("[ACTION] New round started.")
-        push_log("[ACTION] New round started.")
         event_tracker.reset_player_events(steamid)
 
     elif current_phase == 'over':
         logger.info("[ACTION] Round over.")
-        push_log("[ACTION] Round over.")
 
     else:
         logger.warning(f"Unrecognized round phase: '{current_phase}'")

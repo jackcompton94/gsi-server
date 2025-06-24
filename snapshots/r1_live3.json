@@ -4,7 +4,7 @@
     "appid": 730,
     "version": 14084,
     "steamid": "76561198065320026",
-    "timestamp": 1749680024
+    "timestamp": 1749680029
   },
   "map": {
     "mode": "competitive",
@@ -21,7 +21,7 @@
     "round_wins": {}
   },
   "round": {
-    "phase": "freezetime",
+    "phase": "live",
     "win_team": null
   },
   "player": {
@@ -37,17 +37,17 @@
       "flashed": 0,
       "smoked": 0,
       "burning": 0,
-      "money": 800,
-      "round_kills": 0,
-      "round_killhs": 0,
-      "equip_value": 0
+      "money": 500,
+      "round_kills": 1,
+      "round_killhs": 1,
+      "equip_value": 1100
     },
     "weapons": {
       "weapon_0": {
         "name": "weapon_knife_survival_bowie",
         "paintkit": "aq_damascus_90",
         "type": "Knife",
-        "state": "holstered",
+        "state": "active",
         "ammo_clip": null,
         "ammo_clip_max": null,
         "ammo_reserve": null
@@ -56,14 +56,32 @@
         "name": "weapon_usp_silencer",
         "paintkit": "cu_usp_krokos",
         "type": "Pistol",
-        "state": "active",
-        "ammo_clip": 12,
+        "state": "holstered",
+        "ammo_clip": 11,
         "ammo_clip_max": 12,
         "ammo_reserve": 24
+      },
+      "weapon_2": {
+        "name": "weapon_hegrenade",
+        "paintkit": "default",
+        "type": "Grenade",
+        "state": "holstered",
+        "ammo_clip": null,
+        "ammo_clip_max": null,
+        "ammo_reserve": 1
+      },
+      "weapon_3": {
+        "name": "weapon_smokegrenade",
+        "paintkit": "default",
+        "type": "Grenade",
+        "state": "holstered",
+        "ammo_clip": null,
+        "ammo_clip_max": null,
+        "ammo_reserve": 1
       }
     },
     "match_stats": {
-      "kills": 0,
+      "kills": 1,
       "assists": 0,
       "deaths": 0,
       "mvps": 0,

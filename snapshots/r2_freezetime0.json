@@ -4,13 +4,13 @@
     "appid": 730,
     "version": 14084,
     "steamid": "76561198065320026",
-    "timestamp": 1749680029
+    "timestamp": 1749680024
   },
   "map": {
     "mode": "competitive",
     "name": "de_dust2",
     "phase": "live",
-    "round": 1,
+    "round": 2,
     "team_ct": {
       "score": 1
     },
@@ -21,7 +21,7 @@
     "round_wins": {}
   },
   "round": {
-    "phase": "over",
+    "phase": "freezetime",
     "win_team": null
   },
   "player": {
@@ -31,16 +31,16 @@
     "team": "CT",
     "activity": "playing",
     "state": {
-      "health": 0,
+      "health": 100,
       "armor": 0,
       "helmet": false,
       "flashed": 0,
       "smoked": 0,
       "burning": 0,
-      "money": 500,
-      "round_kills": 1,
-      "round_killhs": 1,
-      "equip_value": 1100
+      "money": 800,
+      "round_kills": 0,
+      "round_killhs": 0,
+      "equip_value": 0
     },
     "weapons": {
       "weapon_0": {
@@ -56,28 +56,10 @@
         "name": "weapon_usp_silencer",
         "paintkit": "cu_usp_krokos",
         "type": "Pistol",
-        "state": "holstered",
-        "ammo_clip": 11,
+        "state": "active",
+        "ammo_clip": 12,
         "ammo_clip_max": 12,
         "ammo_reserve": 24
-      },
-      "weapon_2": {
-        "name": "weapon_hegrenade",
-        "paintkit": "default",
-        "type": "Grenade",
-        "state": "active",
-        "ammo_clip": null,
-        "ammo_clip_max": null,
-        "ammo_reserve": 1
-      },
-      "weapon_3": {
-        "name": "weapon_smokegrenade",
-        "paintkit": "default",
-        "type": "Grenade",
-        "state": "holstered",
-        "ammo_clip": null,
-        "ammo_clip_max": null,
-        "ammo_reserve": 1
       }
     },
     "match_stats": {
@@ -85,7 +67,7 @@
       "assists": 0,
       "deaths": 0,
       "mvps": 0,
-      "score": 0
+      "score": 1
     }
   }
 }

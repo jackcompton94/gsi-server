@@ -1,10 +1,13 @@
+import json
 import logging
 import os
 import threading
+
 from flask import Flask, request
 from ui.log_terminal import start_terminal
 from utils.parser import parse_gsi_payload
 from handlers.phase_handler import process_game_state
+from utils.raw_display import display_gsi_data
 
 app = Flask(__name__)
 
@@ -18,6 +21,7 @@ def receive_game_state_integration_update():
     try:
         data = request.data.decode('UTF-8')
         payload = parse_gsi_payload(data)
+        # display_gsi_data(payload.__dict__)
         process_game_state(payload)
         return 'OK', 200
     except Exception as e:
