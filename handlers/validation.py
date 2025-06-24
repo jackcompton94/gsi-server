@@ -1,5 +1,5 @@
 from typing import Optional, Any
-
+from ui.log_terminal import push_log
 
 class PayloadValidator:
     def __init__(self, target_steamid: str, logger):
@@ -27,6 +27,7 @@ class PayloadValidator:
 
         if payload.map.phase == 'gameover':
             self.logger.info("[INFO] Game over")
+            push_log("[INFO] Game over")
             return None
 
         if player.steamid != self.target_steamid:

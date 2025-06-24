@@ -4,27 +4,21 @@
     "appid": 730,
     "version": 14084,
     "steamid": "76561198065320026",
-    "timestamp": 1749680173
+    "timestamp": 1749680029
   },
   "map": {
-    "mode": "casual",
+    "mode": "competitive",
     "name": "de_dust2",
     "phase": "live",
-    "round": 5,
+    "round": 1,
     "team_ct": {
-      "score": 3
+      "score": 0
     },
     "team_t": {
-      "score": 2
+      "score": 0
     },
     "num_matches_to_win_series": 0,
-    "round_wins": {
-      "1": "ct_win_defuse",
-      "2": "t_win_elimination",
-      "3": "t_win_elimination",
-      "4": "ct_win_defuse",
-      "5": "ct_win_elimination"
-    }
+    "round_wins": {}
   },
   "round": {
     "phase": "live",
@@ -38,15 +32,15 @@
     "activity": "playing",
     "state": {
       "health": 100,
-      "armor": 100,
-      "helmet": true,
+      "armor": 0,
+      "helmet": false,
       "flashed": 0,
       "smoked": 0,
       "burning": 0,
-      "money": 9450,
+      "money": 200,
       "round_kills": 0,
       "round_killhs": 0,
-      "equip_value": 5400
+      "equip_value": 1100
     },
     "weapons": {
       "weapon_0": {
@@ -68,15 +62,6 @@
         "ammo_reserve": 24
       },
       "weapon_2": {
-        "name": "weapon_incgrenade",
-        "paintkit": "default",
-        "type": "Grenade",
-        "state": "holstered",
-        "ammo_clip": null,
-        "ammo_clip_max": null,
-        "ammo_reserve": 1
-      },
-      "weapon_3": {
         "name": "weapon_hegrenade",
         "paintkit": "default",
         "type": "Grenade",
@@ -85,7 +70,7 @@
         "ammo_clip_max": null,
         "ammo_reserve": 1
       },
-      "weapon_4": {
+      "weapon_3": {
         "name": "weapon_smokegrenade",
         "paintkit": "default",
         "type": "Grenade",
@@ -93,23 +78,14 @@
         "ammo_clip": null,
         "ammo_clip_max": null,
         "ammo_reserve": 1
-      },
-      "weapon_5": {
-        "name": "weapon_ak47",
-        "paintkit": "default",
-        "type": "Rifle",
-        "state": "holstered",
-        "ammo_clip": 30,
-        "ammo_clip_max": 30,
-        "ammo_reserve": 90
       }
     },
     "match_stats": {
-      "kills": 11,
-      "assists": 1,
-      "deaths": 2,
-      "mvps": 3,
-      "score": 32
+      "kills": 0,
+      "assists": 0,
+      "deaths": 0,
+      "mvps": 0,
+      "score": 0
     }
   }
 }

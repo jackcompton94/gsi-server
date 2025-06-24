@@ -36,7 +36,7 @@ def handle_freezetime_phase(player, steamid, game_map):
 
         if response.ok:
             strategy = response.json().get("strategy")
-            logger.info("[STRATEGY]", strategy)
+            logger.info(f"[STRATEGY] {strategy}")
             push_log(f"[STRATEGY] \n{strip_markdown(strategy)}")
         else:
             logger.error("[ERROR]", response.status_code, response.text)
@@ -49,6 +49,8 @@ def process_game_state(payload):
     """Processes an incoming GSI payload by validating the player,
     tracking round phase transitions, and invoking logic for live round events and strategic transitions.
     """
+    # TODO: ADD SINGLE STATE ACTION TO MAP PHASES IN VALIDATE_PAYLOAD, CURRENTLY THIS WILL RENDER REPEATEDLY BECAUSE
+    # TODO: WE HANDLE EACH MAP PHASE IN VALIDATE_PAYLOAD AND VALIDATE_PAYLOAD MUST RUN ON EVERY PAYLOAD
     player = validator.validate_payload(payload)
     if not player:
         return

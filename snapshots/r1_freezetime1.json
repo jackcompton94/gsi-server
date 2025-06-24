@@ -4,28 +4,21 @@
     "appid": 730,
     "version": 14084,
     "steamid": "76561198065320026",
-    "timestamp": 1749680259
+    "timestamp": 1749680024
   },
   "map": {
-    "mode": "casual",
+    "mode": "competitive",
     "name": "de_dust2",
-    "phase": "gameover",
-    "round": 6,
+    "phase": "live",
+    "round": 1,
     "team_ct": {
-      "score": 3
+      "score": 0
     },
     "team_t": {
-      "score": 3
+      "score": 0
     },
     "num_matches_to_win_series": 0,
-    "round_wins": {
-      "1": "ct_win_defuse",
-      "2": "t_win_elimination",
-      "3": "t_win_elimination",
-      "4": "ct_win_defuse",
-      "5": "ct_win_elimination",
-      "6": "t_win_bomb"
-    }
+    "round_wins": {}
   },
   "round": {
     "phase": "freezetime",
@@ -39,15 +32,15 @@
     "activity": "playing",
     "state": {
       "health": 100,
-      "armor": 100,
-      "helmet": true,
+      "armor": 0,
+      "helmet": false,
       "flashed": 0,
       "smoked": 0,
       "burning": 0,
-      "money": 10000,
+      "money": 800,
       "round_kills": 0,
       "round_killhs": 0,
-      "equip_value": 1600
+      "equip_value": 0
     },
     "weapons": {
       "weapon_0": {
@@ -70,11 +63,11 @@
       }
     },
     "match_stats": {
-      "kills": 11,
-      "assists": 1,
-      "deaths": 3,
-      "mvps": 3,
-      "score": 32
+      "kills": 0,
+      "assists": 0,
+      "deaths": 0,
+      "mvps": 0,
+      "score": 0
     }
   }
 }

@@ -1,4 +1,6 @@
 from typing import Dict, Any
+
+from ui.log_terminal import push_log
 from utils.logging_setup import logger
 from utils.weapon_utils import get_active_weapon
 
@@ -67,6 +69,13 @@ class RoundEventTracker:
         if state.health == 0:
             if self.update_player_death(steamid):
                 logger.info("[LIVE EVENT] Player has died.")
+                weapon_name, weapon_type = get_active_weapon(player.weapons)
+
+                # TODO: TEST BOTH SITUATIONS IN REAL GAME
+                logger.info("[LIVE EVENT] PLAYER DIED WITH: " + weapon_name + " ACTIVE!")
+                loadout = [w.name for w in player.weapons.values() if w.type == 'Grenade']
+                logger.info(f"[LIVE EVENT] PLAYER DIED WITH LOADOUT: {loadout}!")
+
 
         kills = state.round_kills
         weapon_name, weapon_type = get_active_weapon(player.weapons)
